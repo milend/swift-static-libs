@@ -19,7 +19,7 @@ SWIFT_MACOSX_LIB_DIR="${TOOLCHAIN}/usr/lib/swift/macosx"
 
 # Setup header symlink tree for Foo
 
-ln -s ../../../../sources/foo/Foo.h build/foo/headers/Foo
+ln -s ../../../../sources/Foo/Foo.h build/foo/headers/Foo
 
 # Compile Foo.swift
 
@@ -28,13 +28,13 @@ $SWIFT_BIN -frontend \
   -enable-objc-interop \
   -module-name Foo \
   -swift-version 3 \
-  -import-objc-header sources/foo/Foo-Bridging-Header.h \
+  -import-objc-header sources/Foo/Foo-Bridging-Header.h \
   -emit-module-path build/foo/modules/Foo.swift.swiftmodule \
   -o build/foo/objects/Foo.swift.o \
   -Xcc -Ibuild/foo/headers \
   -sdk $SDK \
-  -primary-file sources/foo/Foo.swift \
-  sources/foo/Baz.swift
+  -primary-file sources/Foo/Foo.swift \
+  sources/Foo/Baz.swift
 
 # Compile Baz.swift
 
@@ -43,13 +43,13 @@ $SWIFT_BIN -frontend \
   -enable-objc-interop \
   -module-name Foo \
   -swift-version 3 \
-  -import-objc-header sources/foo/Foo-Bridging-Header.h \
+  -import-objc-header sources/Foo/Foo-Bridging-Header.h \
   -emit-module-path build/foo/modules/Baz.swift.swiftmodule \
   -o build/foo/objects/Baz.swift.o \
   -Xcc -Ibuild/foo/headers \
   -sdk $SDK \
-  -primary-file sources/foo/Baz.swift \
-  sources/foo/Foo.swift
+  -primary-file sources/Foo/Baz.swift \
+  sources/Foo/Foo.swift
 
 # Generate docs and Foo.swiftmodule
 
@@ -71,7 +71,7 @@ $CLANG_BIN \
   -Ibuild/foo/headers \
   -Ibuild/foo/headers/Foo \
   -isysroot $SDK \
-  -c sources/foo/Foo.m \
+  -c sources/Foo/Foo.m \
   -o build/foo/objects/Foo.m.o
 
 # Link libFoo.a
@@ -94,7 +94,7 @@ mkdir -p build/bar/output
 
 # Setup header symlink tree for Bar
 
-ln -s ../../../../sources/bar/Bar.h build/bar/headers/Bar
+ln -s ../../../../sources/Bar/Bar.h build/bar/headers/Bar
 
 # Compile Bar.swift
 
@@ -103,14 +103,14 @@ $SWIFT_BIN -frontend \
   -enable-objc-interop \
   -module-name Bar \
   -swift-version 3 \
-  -import-objc-header sources/bar/Bar-Bridging-Header.h \
+  -import-objc-header sources/Bar/Bar-Bridging-Header.h \
   -emit-module-path build/bar/modules/Bar.swift.swiftmodule \
   -o build/bar/objects/Bar.swift.o \
   -Xcc -Ibuild/bar/headers \
   -Xcc -Ibuild/foo/headers \
   -Ibuild/foo/output \
   -sdk $SDK \
-  -primary-file sources/bar/Bar.swift
+  -primary-file sources/Bar/Bar.swift
 
 # Generate docs and Bar.swiftmodule
 
@@ -132,7 +132,7 @@ $CLANG_BIN \
   -Ibuild/bar/headers \
   -Ibuild/bar/headers/Bar \
   -isysroot $SDK \
-  -c sources/bar/Bar.m \
+  -c sources/Bar/Bar.m \
   -Wno-nonportable-include-path \
   -o build/bar/objects/Bar.m.o
 
