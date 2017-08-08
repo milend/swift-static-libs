@@ -54,7 +54,7 @@ There's an alternative way to achieve the ability to refer to another module's O
 
 The last part can be achieved in one of the following ways:
 
-- Guess where all artifacts will be stored. This is usually `~/Library/Developer/Xcode/DerivedData/Name-HASH`. The way the hashes are constructed has been [reverse engineered]((https://pewpewthespells.com/blog/xcode_deriveddata_hashes.html) but this approach is fragile due to relying on private behaviour.
+- Guess where all artifacts will be stored. This is usually `~/Library/Developer/Xcode/DerivedData/Name-HASH`. The way the hashes are constructed has been [reverse engineered](https://pewpewthespells.com/blog/xcode_deriveddata_hashes.html) but this approach is fragile due to relying on private behaviour.
 - You can just set `SYMROOT` (Build Products Path) in the project settings so that all artifacts are placed in a predictable location.
 
 If you want to find out more about build locations, check out [Xcode Build Locations](https://pewpewthespells.com/blog/xcode_build_locations.html).
