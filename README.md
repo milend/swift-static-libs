@@ -44,6 +44,21 @@ if [ ! -f "${FOO_HEADER_DIR_FOO_SWIFT_H}" ]; then
 fi
 ```
 
+Alternative
+-----------
+
+There's an alternative way to achieve the ability to refer to another module's Obj-C Generated Interface Header through an import like `<Module/Module-Swift.h>`.
+
+- Map `<Module/Module-Swift.h>` to `Module-Swift.h`. This can be achieved using a header map.
+- Add a module's `DerivedSources` directory to the include path.
+
+The last part can be achieved in one of the following ways:
+
+- Guess where all artifacts will be stored. This is usually `~/Library/Developer/Xcode/DerivedData/Name-HASH`. The way the hashes are constructed has been [reverse engineered]((https://pewpewthespells.com/blog/xcode_deriveddata_hashes.html) but this approach is fragile due to relying on private behaviour.
+- You can just set `SYMROOT` (Build Products Path) in the project settings so that all artifacts are placed in a predictable location.
+
+If you want to find out more about build locations, check out [Xcode Build Locations](https://pewpewthespells.com/blog/xcode_build_locations.html).
+
 Acknowledgements
 ----------------
 
