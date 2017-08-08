@@ -9,13 +9,21 @@ mkdir -p build/foo/objects
 mkdir -p build/foo/modules
 mkdir -p build/foo/output
 
+XCODE_APP="/Applications/Xcode-beta.app"
+SDK="${XCODE_APP}/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk"
+TOOLCHAIN="${XCODE_APP}/Contents/Developer/Toolchains/XcodeDefault.xctoolchain"
+SWIFT_BIN="${TOOLCHAIN}/usr/bin/swift"
+CLANG_BIN="${TOOLCHAIN}/usr/bin/clang"
+LIBTOOL_BIN="${TOOLCHAIN}/usr/bin/libtool"
+SWIFT_MACOSX_LIB_DIR="${TOOLCHAIN}/usr/lib/swift/macosx"
+
 # Setup header symlink tree for Foo
 
 ln -s ../../../../sources/foo/Foo.h build/foo/headers/Foo
 
 # Compile Foo.swift
 
-swift -frontend \
+$SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Foo \
@@ -24,13 +32,13 @@ swift -frontend \
   -emit-module-path build/foo/modules/Foo.swift.swiftmodule \
   -o build/foo/objects/Foo.swift.o \
   -Xcc -Ibuild/foo/headers \
-  -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
+  -sdk $SDK \
   -primary-file sources/foo/Foo.swift \
   sources/foo/Baz.swift
 
 # Compile Baz.swift
 
-swift -frontend \
+$SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Foo \
@@ -39,38 +47,39 @@ swift -frontend \
   -emit-module-path build/foo/modules/Baz.swift.swiftmodule \
   -o build/foo/objects/Baz.swift.o \
   -Xcc -Ibuild/foo/headers \
-  -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
+  -sdk $SDK \
   -primary-file sources/foo/Baz.swift \
   sources/foo/Foo.swift
 
 # Generate docs and Foo.swiftmodule
 
-swift -frontend \
+$SWIFT_BIN -frontend \
   -emit-module \
   -module-name Foo \
   -o build/foo/output/Foo.swiftmodule \
   -emit-objc-header-path build/foo/headers/Foo/Foo-Swift.h \
   -emit-module-doc-path build/foo/output/Foo.swiftdoc \
-  -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
+  -sdk $SDK \
   build/foo/modules/Baz.swift.swiftmodule \
   build/foo/modules/Foo.swift.swiftmodule
 
 # Compile Foo.m
 
-clang \
+$CLANG_BIN \
   -x objective-c \
   -fobjc-arc \
   -Ibuild/foo/headers \
   -Ibuild/foo/headers/Foo \
+  -isysroot $SDK \
   -c sources/foo/Foo.m \
   -o build/foo/objects/Foo.m.o
 
 # Link libFoo.a
 
-libtool \
+$LIBTOOL_BIN \
   -static \
-  -syslibroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
-  -L/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx \
+  -syslibroot $SDK \
+  -L$SWIFT_MACOSX_LIB_DIR \
   -o build/foo/output/libFoo.a \
   build/foo/objects/Baz.swift.o \
   build/foo/objects/Foo.swift.o \
@@ -89,7 +98,7 @@ ln -s ../../../../sources/bar/Bar.h build/bar/headers/Bar
 
 # Compile Bar.swift
 
-swift -frontend \
+$SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Bar \
@@ -100,38 +109,39 @@ swift -frontend \
   -Xcc -Ibuild/bar/headers \
   -Xcc -Ibuild/foo/headers \
   -Ibuild/foo/output \
-  -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
+  -sdk $SDK \
   -primary-file sources/bar/Bar.swift
 
 # Generate docs and Bar.swiftmodule
 
-swift -frontend \
+$SWIFT_BIN -frontend \
   -emit-module \
   -module-name Bar \
   -o build/bar/output/Bar.swiftmodule \
   -emit-objc-header-path build/bar/headers/Bar/Bar-Swift.h \
   -emit-module-doc-path build/bar/output/Bar.swiftdoc \
-  -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
+  -sdk $SDK \
   build/bar/modules/Bar.swift.swiftmodule
 
 # Compile Bar.m
 
-clang \
+$CLANG_BIN \
   -x objective-c \
   -fobjc-arc \
   -Ibuild/foo/headers \
   -Ibuild/bar/headers \
   -Ibuild/bar/headers/Bar \
+  -isysroot $SDK \
   -c sources/bar/Bar.m \
   -Wno-nonportable-include-path \
   -o build/bar/objects/Bar.m.o
 
 # Link libBar.a
 
-libtool \
+$LIBTOOL_BIN \
   -static \
-  -syslibroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk \
-  -L/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx \
+  -syslibroot $SDK \
+  -L$SWIFT_MACOSX_LIB_DIR \
   -o build/bar/output/libBar.a \
   build/bar/objects/Bar.swift.o \
   build/bar/objects/Bar.m.o
