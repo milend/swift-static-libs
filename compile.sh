@@ -16,6 +16,7 @@ SWIFT_BIN="${TOOLCHAIN}/usr/bin/swift"
 CLANG_BIN="${TOOLCHAIN}/usr/bin/clang"
 LIBTOOL_BIN="${TOOLCHAIN}/usr/bin/libtool"
 SWIFT_MACOSX_LIB_DIR="${TOOLCHAIN}/usr/lib/swift/macosx"
+SWIFT_VERSION="3"
 
 # Setup header symlink tree for Foo
 
@@ -27,7 +28,7 @@ $SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Foo \
-  -swift-version 3 \
+  -swift-version $SWIFT_VERSION \
   -import-objc-header sources/Foo/Foo-Bridging-Header.h \
   -emit-module-path build/foo/modules/Foo.swift.swiftmodule \
   -o build/foo/objects/Foo.swift.o \
@@ -42,7 +43,7 @@ $SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Foo \
-  -swift-version 3 \
+  -swift-version $SWIFT_VERSION \
   -import-objc-header sources/Foo/Foo-Bridging-Header.h \
   -emit-module-path build/foo/modules/Baz.swift.swiftmodule \
   -o build/foo/objects/Baz.swift.o \
@@ -56,7 +57,7 @@ $SWIFT_BIN -frontend \
 $SWIFT_BIN -frontend \
   -emit-module \
   -module-name Foo \
-  -swift-version 3 \
+  -swift-version $SWIFT_VERSION \
   -o build/foo/output/Foo.swiftmodule \
   -emit-objc-header-path build/foo/headers/Foo/Foo-Swift.h \
   -emit-module-doc-path build/foo/output/Foo.swiftdoc \
@@ -107,7 +108,7 @@ $SWIFT_BIN -frontend \
   -c \
   -enable-objc-interop \
   -module-name Bar \
-  -swift-version 3 \
+  -swift-version $SWIFT_VERSION \
   -import-objc-header sources/Bar/Bar-Bridging-Header.h \
   -emit-module-path build/bar/modules/Bar.swift.swiftmodule \
   -o build/bar/objects/Bar.swift.o \
@@ -122,7 +123,7 @@ $SWIFT_BIN -frontend \
 $SWIFT_BIN -frontend \
   -emit-module \
   -module-name Bar \
-  -swift-version 3 \
+  -swift-version $SWIFT_VERSION \
   -o build/bar/output/Bar.swiftmodule \
   -emit-objc-header-path build/bar/headers/Bar/Bar-Swift.h \
   -emit-module-doc-path build/bar/output/Bar.swiftdoc \
