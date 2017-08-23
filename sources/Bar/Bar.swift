@@ -4,9 +4,9 @@ import Foundation
 import Foo
 import CoreMedia
 
-class BarObject: NSObject {
+@objc class BarObject: NSObject {
   let time: CMTime
-	init(time: CMTime) {
+	@objc init(time: CMTime) {
 		self.time = time
 	}
 }

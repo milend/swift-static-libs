@@ -10,8 +10,8 @@ public struct FooStruct {
 
 // Obj-C Types
 
-public class FooLogger: NSObject {
-  public func log() {
+@objc public class FooLogger: NSObject {
+  @objc public func log() {
 		// Swift -> Obj-C
     let foo = FooObject()
     print("foo: \(foo.makeBaz())")
