@@ -17,3 +17,7 @@ public class FooLogger: NSObject {
     print("foo: \(foo.makeBaz())")
   }
 }
+
+@objc public class FooSubclass: FooObject {
+  
+}

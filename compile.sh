@@ -56,10 +56,14 @@ $SWIFT_BIN -frontend \
 $SWIFT_BIN -frontend \
   -emit-module \
   -module-name Foo \
+  -swift-version 3 \
   -o build/foo/output/Foo.swiftmodule \
   -emit-objc-header-path build/foo/headers/Foo/Foo-Swift.h \
   -emit-module-doc-path build/foo/output/Foo.swiftdoc \
   -sdk $SDK \
+  -Xcc -Ibuild/foo/headers \
+  -Xcc -Ibuild/foo/headers/Foo \
+  -import-objc-header sources/Foo/Foo-Bridging-Header.h \
   build/foo/modules/Baz.swift.swiftmodule \
   build/foo/modules/Foo.swift.swiftmodule
 
@@ -70,6 +74,7 @@ $CLANG_BIN \
   -fobjc-arc \
   -Ibuild/foo/headers \
   -Ibuild/foo/headers/Foo \
+  -I. \
   -isysroot $SDK \
   -c sources/Foo/Foo.m \
   -o build/foo/objects/Foo.m.o
@@ -117,9 +122,12 @@ $SWIFT_BIN -frontend \
 $SWIFT_BIN -frontend \
   -emit-module \
   -module-name Bar \
+  -swift-version 3 \
   -o build/bar/output/Bar.swiftmodule \
   -emit-objc-header-path build/bar/headers/Bar/Bar-Swift.h \
   -emit-module-doc-path build/bar/output/Bar.swiftdoc \
+  -Xcc -Ibuild/bar/headers \
+  -Xcc -Ibuild/foo/headers \
   -sdk $SDK \
   build/bar/modules/Bar.swift.swiftmodule
 
@@ -132,6 +140,7 @@ $CLANG_BIN \
   -Ibuild/bar/headers \
   -Ibuild/bar/headers/Bar \
   -isysroot $SDK \
+  -I. \
   -c sources/Bar/Bar.m \
   -Wno-nonportable-include-path \
   -o build/bar/objects/Bar.m.o

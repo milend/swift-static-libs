@@ -271,7 +271,7 @@
 				EXECUTABLE_PREFIX = lib;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "../../sources/foo/Foo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "../../sources/Foo/Foo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -284,7 +284,7 @@
 				EXECUTABLE_PREFIX = lib;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "../../sources/foo/Foo-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "../../sources/Foo/Foo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
