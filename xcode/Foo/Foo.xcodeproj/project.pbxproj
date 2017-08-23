@@ -15,11 +15,11 @@
 
 /* Begin PBXFileReference section */
 		F36419C61F375E8B00EB9BCA /* libFoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFoo.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F36419E71F375ED400EB9BCA /* Foo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Foo.m; path = ../../../sources/foo/Foo.m; sourceTree = "<group>"; };
-		F36419E81F375ED400EB9BCA /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Foo.h; path = ../../../sources/foo/Foo.h; sourceTree = "<group>"; };
-		F36419EB1F375EF600EB9BCA /* Foo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Foo-Bridging-Header.h"; path = "../../../sources/foo/Foo-Bridging-Header.h"; sourceTree = "<group>"; };
-		F36419EC1F375EF600EB9BCA /* Foo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Foo.swift; path = ../../../sources/foo/Foo.swift; sourceTree = "<group>"; };
-		F36419ED1F375EF600EB9BCA /* Baz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Baz.swift; path = ../../../sources/foo/Baz.swift; sourceTree = "<group>"; };
+		F36419E71F375ED400EB9BCA /* Foo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
+		F36419E81F375ED400EB9BCA /* Foo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		F36419EB1F375EF600EB9BCA /* Foo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Foo-Bridging-Header.h"; sourceTree = "<group>"; };
+		F36419EC1F375EF600EB9BCA /* Foo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foo.swift; sourceTree = "<group>"; };
+		F36419ED1F375EF600EB9BCA /* Baz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baz.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,8 @@
 				F36419E71F375ED400EB9BCA /* Foo.m */,
 				F36419EB1F375EF600EB9BCA /* Foo-Bridging-Header.h */,
 			);
-			path = Foo;
+			name = Foo;
+			path = ../../sources/Foo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

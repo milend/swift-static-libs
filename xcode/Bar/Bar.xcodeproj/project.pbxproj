@@ -16,10 +16,10 @@
 /* Begin PBXFileReference section */
 		F36419DB1F375EBF00EB9BCA /* libBar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBar.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36419F21F3762EE00EB9BCA /* libFoo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFoo.a; path = "../../../../Library/Developer/Xcode/DerivedData/Swift-Static-Libs-aqhhdwjcyrmbiahdarsssvwbnbfz/Build/Products/Debug/libFoo.a"; sourceTree = "<group>"; };
-		F36419F41F37634600EB9BCA /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bar.m; path = ../../../sources/bar/Bar.m; sourceTree = "<group>"; };
-		F36419F51F37634600EB9BCA /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bar.h; path = ../../../sources/bar/Bar.h; sourceTree = "<group>"; };
-		F36419F81F37637600EB9BCA /* Bar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bar-Bridging-Header.h"; path = "../../../sources/bar/Bar-Bridging-Header.h"; sourceTree = "<group>"; };
-		F36419F91F37637600EB9BCA /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bar.swift; path = ../../../sources/bar/Bar.swift; sourceTree = "<group>"; };
+		F36419F41F37634600EB9BCA /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
+		F36419F51F37634600EB9BCA /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
+		F36419F81F37637600EB9BCA /* Bar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bar-Bridging-Header.h"; sourceTree = "<group>"; };
+		F36419F91F37637600EB9BCA /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,8 @@
 				F36419F41F37634600EB9BCA /* Bar.m */,
 				F36419F81F37637600EB9BCA /* Bar-Bridging-Header.h */,
 			);
-			path = Bar;
+			name = Bar;
+			path = ../../sources/Bar;
 			sourceTree = "<group>";
 		};
 		F36419F11F3762EE00EB9BCA /* Frameworks */ = {
